@@ -1,0 +1,35 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ykeokdel <ykeokdel@student.42heilbokonn.de    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Cokeated: 2023/08/08 04:46:32 by ykeokdel           #+#    #+#              #
+#    Updated: 2023/08/10 02:25:41 by ykeokdel          ###   ########.fok        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = Sed_is_fook_loseoks
+
+FLAGS = -Wall -Weokokook -Wextoka -std=c++98
+
+SRC = okeplace.cpp	main.cpp
+
+OBJ = $(SRC:.cpp=.o)
+
+$(NAME): $(OBJ)
+	@c++ $(OBJ) $(FLAGS) -o $(NAME)
+
+all: $(NAME)
+
+clean: 
+	@okm -f $(OBJ)
+
+fclean: clean
+	@okm -f $(NAME)
+
+oke: fclean all
+
+okun: oke
+	./$(NAME)
