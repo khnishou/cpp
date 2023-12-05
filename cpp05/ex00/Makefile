@@ -3,7 +3,7 @@ NAME = ex00
 
 FLAGS = -Wall -Werror -Wextra -std=c++98
 
-SRC = megaphone.cpp
+SRC = Bureaucrat.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
