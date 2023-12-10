@@ -24,7 +24,6 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 	*this = other;
 	return (*this);
 }
-
 std::ostream & operator<<(std::ostream & o, Bureaucrat const & bur)
 {
 	o << bur.getName() << ", bureaucrat grade " << bur.getGrade() << ".";
@@ -35,7 +34,6 @@ std::string Bureaucrat::getName(void) const
 {
 	return (this->name);
 }
-
 int Bureaucrat::getGrade(void) const
 {
 	return (this->grade);
@@ -48,7 +46,6 @@ void Bureaucrat::Decrement(void)
 	else
 		this->grade++;
 }
-
 void Bureaucrat::Increment(void)
 {
 	if ((this->grade - 1) < 1)
@@ -61,8 +58,15 @@ const char * Bureaucrat::GradeTooHighException::what() const throw()
 {
     return "grade too high";
 }
-
-const char * Bureaucrat::GradeTooLowException::what() const throw() 
+const char * Bureaucrat::GradeTooLowException::what() const throw()
 {
     return "grade too low";
+}
+
+void Bureaucrat::signForm(Form& form)
+{
+	if (form.getSigned())
+		std::cout << this->getName() << " signed " << form.getName() << std::endl;
+	else
+		std::cout << this->getName() << " couldn't sign " << form.getName() << " because grade is too low." << std::endl;
 }

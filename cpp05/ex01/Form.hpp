@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <string>
+#include "Bureaucrat.hpp"
+class Bureaucrat;
 
 class Form
 {
@@ -32,6 +34,13 @@ class Form
 			public:
 				const char* what() const throw();
 		};
+
+		std::string getName(void) const;
+		bool		getSigned(void) const;
+		int			getSignGrade(void) const;
+		int			getExecGrade(void) const;
+
+		void beSigned(Bureaucrat& bur);
 };
 std::ostream & operator<<(std::ostream & o, Form const & obj);
 
