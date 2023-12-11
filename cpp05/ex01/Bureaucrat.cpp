@@ -1,22 +1,28 @@
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(std::string name, int grade):name(name)
+//****************************************************************************//
+//                          Constructor & Destructor                          //
+//****************************************************************************//
+
+Bureaucrat::Bureaucrat(std::string name, int grade):_name(name)
 {
 	if (grade < 1)
 		throw GradeTooHighException();
 	else if (grade > 150)
 		throw GradeTooLowException();
 	else
-		this->grade = grade;
+		this->_grade = grade;
 }
-Bureaucrat::Bureaucrat():name("random")
+
+Bureaucrat::Bureaucrat():_name("random")
 {
-	this->grade = 150;
+	this->_grade = 150;
 }
+
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Bureaucrat destructor called\n";
+	std::cout << ORANGE << this->getName() << "Bureaucrat destructor called\n" << DEFAULT;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
@@ -24,35 +30,62 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 	*this = other;
 	return (*this);
 }
-std::ostream & operator<<(std::ostream & o, Bureaucrat const & bur)
-{
-	o << bur.getName() << ", bureaucrat grade " << bur.getGrade() << ".";
-	return o;
-}
+
+//****************************************************************************//
+//                              Accessor Methods                              //
+//****************************************************************************//
 
 std::string Bureaucrat::getName(void) const
 {
-	return (this->name);
+	return (this->_name);
 }
+
 int Bureaucrat::getGrade(void) const
 {
-	return (this->grade);
+	return (this->_grade);
 }
 
 void Bureaucrat::Decrement(void)
 {
-	if ((this->grade + 1) > 150)
+	if ((this->_grade + 1) > 150)
 		GradeTooLowException();
 	else
-		this->grade++;
+		this->_grade++;
 }
+
 void Bureaucrat::Increment(void)
 {
-	if ((this->grade - 1) < 1)
+	if ((this->_grade - 1) < 1)
 		GradeTooHighException();
 	else
-		this->grade--;
+		this->_grade--;
 }
+
+void Bureaucrat::signForm(Form& form)
+{
+	if (form.getSigned())
+		std::cout << BLUE << this->getName() << " couldn't sign "
+			<< form.getName() << " because it's already signed." << std::endl;
+	else
+	{
+		std::cout << GREEN << this->getName() << " signed " << form.getName()
+			<< DEFAULT << std::endl;
+		try
+		{
+			form.beSigned(*this);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << RED << form.getName() << " "
+				<< e.what() << DEFAULT << '\n';
+		}
+		
+	}
+}
+
+//****************************************************************************//
+//                           Error Message Function                           //
+//****************************************************************************//
 
 const char * Bureaucrat::GradeTooHighException::what() const throw() 
 {
@@ -63,10 +96,12 @@ const char * Bureaucrat::GradeTooLowException::what() const throw()
     return "grade too low";
 }
 
-void Bureaucrat::signForm(Form& form)
+//****************************************************************************//
+//                               Other Function                               //
+//****************************************************************************//
+
+std::ostream & operator<<(std::ostream & o, Bureaucrat const & bur)
 {
-	if (form.getSigned())
-		std::cout << this->getName() << " signed " << form.getName() << std::endl;
-	else
-		std::cout << this->getName() << " couldn't sign " << form.getName() << " because grade is too low." << std::endl;
+	o << bur.getName() << ", bureaucrat grade " << bur.getGrade() << ".";
+	return o;
 }

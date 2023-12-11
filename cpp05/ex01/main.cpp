@@ -1,50 +1,46 @@
 
 #include "Bureaucrat.hpp"
 
-int main(void) 
+void	wrong_grade()
 {
-    //Good
-	try 
-	{
-        Bureaucrat bureaucrat("bob", 2);
-        std::cout << bureaucrat << std::endl;
-    }
-    catch (Bureaucrat::GradeTooHighException &e)
-	{
-        std::cerr << "TooHighException" << std::endl;
-    }
-    catch (Bureaucrat::GradeTooLowException &e)
-	{
-        std::cerr << "TooLowException" << std::endl;
-    }
+	std::cout << YELLOW << std::endl <<  "*************** wrong grade ***************" << DEFAULT << std::endl;
+	try
+	{	
+		Bureaucrat	ross("Ross", 50);
+		Bureaucrat	harvey("Harvey", 1);
 
-    try 
-	{
-        Bureaucrat bureaucrat1("bob", 1);
-        bureaucrat1.Increment();
-        std::cout << bureaucrat1 << std::endl;
-    }
-    catch (Bureaucrat::GradeTooHighException &e)
-	{
-        std::cerr << "TooHighException" << std::endl;
-    }
-    catch (Bureaucrat::GradeTooLowException &e)
-	{
-        std::cerr << "TooLowException" << std::endl;
-    }
+		Form	top1("A1", false, 5, 5);
+		Form	low1("C5", false, 25, 25);
+		Form	mid1("B2", false, 25, 25);
 
-    try 
+		harvey.signForm(top1);
+		harvey.signForm(top1);
+		ross.signForm(low1);
+		ross.signForm(mid1);
+	}
+	catch (const std::exception& e)
 	{
-        Bureaucrat bureaucrat2("bob", 150);
-        bureaucrat2.Decrement();
-        std::cout << bureaucrat2 << std::endl;
-    }
-    catch (Bureaucrat::GradeTooHighException &e)
+		std::cerr << RED << e.what() << DEFAULT << std::endl;
+	}
+}
+
+void	wrong_initialization()
+{
+	std::cout << YELLOW << std::endl << "*************** wrong init ***************" << DEFAULT << std::endl;
+	try
 	{
-        std::cerr << e.what() << std::endl;
-    }
-    catch (Bureaucrat::GradeTooLowException &e)
+		Form	tooLow("Wrong", false, 151, 151);
+	}
+	catch (const std::exception& e)
 	{
-        std::cerr << e.what() << std::endl;
-    }
+		std::cerr << RED << e.what() << DEFAULT << std::endl;
+	}
+}
+
+int	main()
+{
+	wrong_grade();
+	wrong_initialization();
+
+	return 0;
 }

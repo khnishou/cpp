@@ -20,20 +20,7 @@ class Form
 		Form(std::string name, bool sign, int signGrade, int execGrade);
         Form();
         ~Form();
-
         Form& operator=(const Form& other);
-
-		class GradeTooHighException : public std::exception
-		{
-			public:
-				const char* what() const throw();
-		};
-
-		class GradeTooLowException : public std::exception
-		{
-			public:
-				const char* what() const throw();
-		};
 
 		std::string getName(void) const;
 		bool		getSigned(void) const;
@@ -41,7 +28,20 @@ class Form
 		int			getExecGrade(void) const;
 
 		void beSigned(Bureaucrat& bur);
+
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+
 };
+
 std::ostream & operator<<(std::ostream & o, Form const & obj);
 
 #endif
