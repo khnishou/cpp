@@ -21,7 +21,7 @@ Bureaucrat::~Bureaucrat() {
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
-	*this = other;
+	this->setGrade(other.getGrade());
 	return (*this);
 }
 

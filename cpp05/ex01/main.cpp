@@ -8,7 +8,9 @@ void wrong_grade() {
 		Bureaucrat ross("Ross", 50);
 		Bureaucrat harvey("Harvey", 1);
 
-		Form top1("A1", false, 5, 5);
+		Form top("A1", false, 5, 5);
+		Form top1;
+		top1 = top;
 		Form low1("C5", false, 25, 25);
 		Form mid1("B2", false, 25, 25);
 

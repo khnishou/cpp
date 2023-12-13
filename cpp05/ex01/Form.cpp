@@ -19,7 +19,7 @@ Form::Form() : _name("random"), _signGrade(150), _execGrade(150) { this->_signed
 Form::~Form() { std::cout << ORANGE << this->getName() << " Form destructor called\n" << DEFAULT; }
 
 Form& Form::operator=(const Form& other) {
-	*this = other;
+	this->setSigned(other.getSigned());
 	return (*this);
 }
 
