@@ -17,6 +17,7 @@ class Form {
 
    public:
 	Form(std::string name, bool sign, int signGrade, int execGrade);
+	Form(Form& other);
 	Form();
 	~Form();
 	Form& operator=(const Form& other);

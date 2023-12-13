@@ -1,46 +1,85 @@
-
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
-void	wrong_grade()
+void	shrubberyCreationFormTest()
 {
-	std::cout << YELLOW << std::endl <<  "*************** wrong grade ***************" << DEFAULT << std::endl;
+	std::cout << YELLOW
+			<< "\t\t\tshrubberyCreationFormTest EXAMPLE"
+			<< DEFAULT << std::endl;
 	try
-	{	
-		Bureaucrat	ross("Ross", 50);
-		Bureaucrat	harvey("Harvey", 1);
-
-		AForm	top1("A1", false, 5, 5);
-		AForm	low1("C5", false, 25, 25);
-		AForm	mid1("B2", false, 25, 25);
-
-		harvey.signAForm(top1);
-		harvey.signAForm(top1);
-		ross.signAForm(low1);
-		ross.signAForm(mid1);
-	}
-	catch (const std::exception& e)
 	{
-		std::cerr << RED << e.what() << DEFAULT << std::endl;
+		Bureaucrat	harvey("Harvey", 1);
+		Bureaucrat	ross("Ross", 140);
+
+		ShrubberyCreationForm	form("tree_1");
+		ross.signForm(form);
+		form.execute(harvey);
+		form.execute(ross);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED
+				<< e.what()
+				<< DEFAULT << std::endl;
 	}
 }
 
-void	wrong_initialization()
+void	RobotomyRequestFormTest()
 {
-	std::cout << YELLOW << std::endl << "*************** wrong init ***************" << DEFAULT << std::endl;
+	std::cout << YELLOW
+			<< "\t\t\tRobotomyRequestFormTest EXAMPLE"
+			<< DEFAULT << std::endl;
 	try
 	{
-		AForm	tooLow("Wrong", false, 151, 151);
+		Bureaucrat	harvey("Harvey", 1);
+		Bureaucrat	ross("Ross", 140);
+
+		RobotomyRequestForm	form("AutomativeWork");
+		ross.signForm(form);
+		harvey.signForm(form);
+		form.execute(harvey);
+		form.execute(ross);
 	}
-	catch (const std::exception& e)
+	catch(const std::exception& e)
 	{
-		std::cerr << RED << e.what() << DEFAULT << std::endl;
+		std::cerr << RED
+				<< e.what()
+				<< DEFAULT << std::endl;
+	}
+}
+
+void	PresidentialPardonFormTest()
+{
+	std::cout << YELLOW
+			<< "\t\t\tPresidentialPardonFormTest EXAMPLE"
+			<< DEFAULT << std::endl;
+	try
+	{
+		Bureaucrat	harvey("Harvey", 1);
+		Bureaucrat	ross("Ross", 140);
+
+		PresidentialPardonForm	form("Francesco");
+		ross.signForm(form);
+		harvey.signForm(form);
+		form.execute(harvey);
+		form.execute(ross);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED
+				<< e.what()
+				<< DEFAULT << std::endl;
 	}
 }
 
 int	main()
 {
-	wrong_grade();
-	wrong_initialization();
+	shrubberyCreationFormTest();
+	RobotomyRequestFormTest();
+	PresidentialPardonFormTest();
 
 	return 0;
 }

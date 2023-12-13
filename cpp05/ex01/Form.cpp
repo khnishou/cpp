@@ -16,6 +16,11 @@ Form::Form(std::string name, bool sign, int signGrade, int execGrade)
 
 Form::Form() : _name("random"), _signGrade(150), _execGrade(150) { this->_signed = false; }
 
+Form::Form(Form& other)
+	: _name(other.getName()), _signGrade(other.getSignGrade()), _execGrade(other.getExecGrade()) {
+	this->_signed = other.getSigned();
+}
+
 Form::~Form() { std::cout << ORANGE << this->getName() << " Form destructor called\n" << DEFAULT; }
 
 Form& Form::operator=(const Form& other) {

@@ -10,24 +10,25 @@ class AForm;
 class ShrubberyCreationForm : public AForm
 {
 	private:
-		std::string	_target;
-
+		const std::string _target;
 	public:
-		ShrubberyCreationForm(std::string name);
-		ShrubberyCreationForm(ShrubberyCreationForm &other);
+		ShrubberyCreationForm(std::string target);
+		ShrubberyCreationForm(ShrubberyCreationForm& other);
 		ShrubberyCreationForm();
 		~ShrubberyCreationForm();
-		ShrubberyCreationForm &operator=(const ShrubberyCreationForm& other);
+		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
 
 		std::string getTarget(void) const;
 
-		virtual void execute(Bureaucrat const &bur) const;
+		virtual void execute(const Bureaucrat &executor) const;
+		virtual int getReqGradeSign(void) const;
+		virtual int getReqGradeExec(void) const;
 
-		static const int reqSignGrade = 145;
-		static const int reqExecGrade = 137;
+		static const int reqGradeSign = 145;
+		static const int reqGradeExec = 137;
 
 };
 
-std::ostream & operator<<(std::ostream & o, ShrubberyCreationForm const & obj);
+std::ostream& operator<<(std::ostream& o, ShrubberyCreationForm const& obj);
 
 #endif
