@@ -21,10 +21,11 @@ class ShrubberyCreationForm : public AForm
 
 		std::string getTarget(void) const;
 
-
+		virtual void execute(Bureaucrat const &bur) const;
 
 		static const int reqSignGrade = 145;
 		static const int reqExecGrade = 137;
+
 };
 
 std::ostream & operator<<(std::ostream & o, ShrubberyCreationForm const & obj);

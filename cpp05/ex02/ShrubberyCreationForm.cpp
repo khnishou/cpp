@@ -36,3 +36,13 @@ std::ostream & operator<<(std::ostream & o, ShrubberyCreationForm const & obj)
 	o << "ShrubberyCreationForm : " << obj.getTarget() << std::endl;
 	return (o);
 }
+
+void ShrubberyCreationForm::execute(Bureaucrat const &bur) const
+{
+	if (bur.getGrade() > this->reqExecGrade)
+		throw GradeTooLowException();
+	else if (!this->getSigned())
+		throw SignedIsNegative();
+	else if ()
+		;
+}

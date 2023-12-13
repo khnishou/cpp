@@ -30,6 +30,7 @@ class Bureaucrat
                 const char* what() const throw();
         };
 
+        void        setGrade(int grade);
         std::string getName(void) const;
         int         getGrade(void) const;
 

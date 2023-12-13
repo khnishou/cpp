@@ -41,20 +41,25 @@ int Bureaucrat::getGrade(void) const
 	return (this->grade);
 }
 
+void Bureaucrat::setGrade(int grade)
+{
+	this->grade = grade;
+}
+
 void Bureaucrat::Decrement(void)
 {
-	if ((this->grade + 1) > 150)
-		GradeTooLowException();
+	if ((this->getGrade() + 1) > 150)
+		throw GradeTooLowException();
 	else
-		this->grade++;
+		setGrade(this->getGrade() + 1);
 }
 
 void Bureaucrat::Increment(void)
 {
-	if ((this->grade - 1) < 1)
-		GradeTooHighException();
+	if ((this->getGrade() - 1) < 1)
+		throw GradeTooHighException();
 	else
-		this->grade--;
+		setGrade(this->getGrade() - 1);
 }
 
 const char * Bureaucrat::GradeTooHighException::what() const throw() 

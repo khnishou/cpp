@@ -54,20 +54,6 @@ int	AForm::getExecGrade(void) const
 	return (this->_execGrade);
 }
 
-void AForm::beSigned(Bureaucrat& bur)
-{
-	if (bur.getGrade() > this->getSignGrade())
-		throw GradeTooLowException();
-	else
-		this->_signed = true;
-}
-
-void execute(Bureaucrat const & executor) const
-{
-
-}
-
-
 /******************************************************************************/
 /*                           Error Message Function                           */
 /******************************************************************************/
@@ -79,6 +65,10 @@ const char * AForm::GradeTooHighException::what() const throw()
 const char * AForm::GradeTooLowException::what() const throw() 
 {
     return "grade too low";
+}
+const char * AForm::SignedIsNegative::what() const throw() 
+{
+    return "form is not signed";
 }
 
 /******************************************************************************/
@@ -92,4 +82,17 @@ std::ostream & operator<<(std::ostream & o, AForm const & obj)
 	o << "Sign grade : " << obj.getSignGrade() << std::endl;
 	o << "Exec grade : " << obj.getExecGrade() << std::endl;
 	return (o);
+}
+
+void AForm::beSigned(Bureaucrat& bur)
+{
+	if (bur.getGrade() > this->getSignGrade())
+		throw GradeTooLowException();
+	else
+		this->_signed = true;
+}
+
+void execute(Bureaucrat const & executor)
+{
+	
 }
