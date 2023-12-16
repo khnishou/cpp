@@ -1,5 +1,7 @@
 
 #include "Bureaucrat.hpp"
+#include <iostream>
+#include <ostream>
 
 //****************************************************************************//
 //                          Constructor & Destructor                          //
@@ -17,7 +19,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name) {
 Bureaucrat::Bureaucrat() : _name("random") { this->_grade = 150; }
 
 Bureaucrat::~Bureaucrat() {
-	std::cout << ORANGE << this->getName() << "Bureaucrat destructor called\n" << DEFAULT;
+	std::cout << ORANGE << this->getName() << " Bureaucrat destructor called\n" << DEFAULT;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
@@ -52,7 +54,7 @@ void Bureaucrat::Increment(void) {
 void Bureaucrat::signForm(AForm& other) {
 	if (other.getSigned())
 		std::cout << BLUE << this->getName() << " couldn't sign " << other.getName()
-				  << " because it's already signed." << std::endl;
+				  << " because it's already signed." << DEFAULT << std::endl;
 	else {
 		std::cout << GREEN << this->getName() << " signed " << other.getName() << DEFAULT
 				  << std::endl;

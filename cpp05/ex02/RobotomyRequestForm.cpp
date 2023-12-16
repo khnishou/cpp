@@ -1,5 +1,6 @@
 
 #include "RobotomyRequestForm.hpp"
+#include "Bureaucrat.hpp"
 
 /******************************************************************************/
 /*                          Constructor & Destructor                          */
@@ -12,7 +13,7 @@ RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm& other) : _target(o
 RobotomyRequestForm::RobotomyRequestForm() : _target("random") {}
 
 RobotomyRequestForm::~RobotomyRequestForm() {
-	std::cout << ORANGE << this->getTarget() << " destructor called\n" << DEFAULT;
+	std::cout << ORANGE << this->getTarget() << " RobotomyRequestForm destructor called\n" << DEFAULT;
 }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other) {
@@ -39,16 +40,11 @@ std::ostream& operator<<(std::ostream& o, RobotomyRequestForm const& obj) {
 }
 
 void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
-	if (executor.getGrade() <= getExecGrade() && getSigned()) {
-		srand(time(NULL));
-		int success = rand() % 2;
-		if (success) {
-			std::cout << "Drilling noises... ";
-			std::cout << _target << " has been robotomized successfully!" << std::endl;
-		} else {
-			std::cout << "Drilling noises... Robotomy failed for " << _target << std::endl;
-		}
-	} else {
-		throw GradeTooLowException();
+	std::cout << GRAY << "*drilling noises*" << DEFAULT << std::endl;
+	if (rand() % 2) {
+		std::cout << GRAY << this->getTarget() << " has been robotomized successfull" << DEFAULT << std::endl;
+	}
+	else {
+		std::cout << GRAY << "the robotomy failed." << DEFAULT << std::endl;
 	}
 }

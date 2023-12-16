@@ -1,5 +1,6 @@
 
 #include "PresidentialPardonForm.hpp"
+#include "Bureaucrat.hpp"
 
 /******************************************************************************/
 /*                          Constructor & Destructor                          */
@@ -13,7 +14,7 @@ PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm& other)
 PresidentialPardonForm::PresidentialPardonForm() : _target("random") {}
 
 PresidentialPardonForm::~PresidentialPardonForm() {
-	std::cout << ORANGE << this->getTarget() << " destructor called\n" << DEFAULT;
+	std::cout << ORANGE << this->getTarget() << " PresidentialPardonForm destructor called\n" << DEFAULT;
 }
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other) {
@@ -40,9 +41,5 @@ std::ostream& operator<<(std::ostream& o, PresidentialPardonForm const& obj) {
 }
 
 void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
-	if (executor.getGrade() <= getExecGrade() && getSigned()) {
-		std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
-	} else {
-		throw GradeTooLowException();
-	}
+	std::cout << GRAY << this->getTarget() << " has been pardoned by Zaphod Beeblebrox." << DEFAULT << std::endl;
 }

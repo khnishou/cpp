@@ -6,72 +6,51 @@
 
 void	shrubberyCreationFormTest()
 {
-	std::cout << YELLOW
-			<< "\t\t\tshrubberyCreationFormTest EXAMPLE"
-			<< DEFAULT << std::endl;
-	try
-	{
+	std::cout << YELLOW << "\n\n*************** ShrubberyCreationTest ***************" << DEFAULT << std::endl;
+	try {
 		Bureaucrat	harvey("Harvey", 1);
 		Bureaucrat	ross("Ross", 140);
 
-		ShrubberyCreationForm	form("tree_1");
+		ShrubberyCreationForm	form("Khnisou");
 		ross.signForm(form);
-		form.execute(harvey);
-		form.execute(ross);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << RED
-				<< e.what()
-				<< DEFAULT << std::endl;
+		harvey.executeForm(form);
+		ross.executeForm(form);
+	} catch(const std::exception& e) {
+		std::cerr << RED << e.what() << DEFAULT << std::endl;
 	}
 }
 
 void	RobotomyRequestFormTest()
 {
 	std::cout << YELLOW
-			<< "\t\t\tRobotomyRequestFormTest EXAMPLE"
+			<< "\n\n*************** RobotomyRequestTest ***************"
 			<< DEFAULT << std::endl;
-	try
-	{
+	try {
 		Bureaucrat	harvey("Harvey", 1);
 		Bureaucrat	ross("Ross", 140);
 
-		RobotomyRequestForm	form("AutomativeWork");
+		RobotomyRequestForm	form("Khnishou");
 		ross.signForm(form);
-		harvey.signForm(form);
-		form.execute(harvey);
-		form.execute(ross);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << RED
-				<< e.what()
-				<< DEFAULT << std::endl;
+		harvey.executeForm(form);
+		ross.executeForm(form);
+	} catch(const std::exception& e) {
+		std::cerr << RED << e.what() << DEFAULT << std::endl;
 	}
 }
 
 void	PresidentialPardonFormTest()
 {
-	std::cout << YELLOW
-			<< "\t\t\tPresidentialPardonFormTest EXAMPLE"
-			<< DEFAULT << std::endl;
-	try
-	{
+	std::cout << YELLOW << "\n\n*************** PresidentialPardonTest ***************" << DEFAULT << std::endl;
+	try{
 		Bureaucrat	harvey("Harvey", 1);
 		Bureaucrat	ross("Ross", 140);
 
-		PresidentialPardonForm	form("Francesco");
+		PresidentialPardonForm	form("Khnishou");
 		ross.signForm(form);
-		harvey.signForm(form);
-		form.execute(harvey);
-		form.execute(ross);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << RED
-				<< e.what()
-				<< DEFAULT << std::endl;
+		harvey.executeForm(form);
+		ross.executeForm(form);
+	} catch(const std::exception& e) {
+		std::cerr << RED << e.what() << DEFAULT << std::endl;
 	}
 }
 

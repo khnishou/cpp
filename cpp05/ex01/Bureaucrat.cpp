@@ -52,7 +52,7 @@ void Bureaucrat::Increment(void) {
 void Bureaucrat::signForm(Form& form) {
 	if (form.getSigned())
 		std::cout << BLUE << this->getName() << " couldn't sign " << form.getName()
-				  << " because it's already signed." << std::endl;
+				  << " because it's already signed." << DEFAULT << std::endl;
 	else {
 		std::cout << GREEN << this->getName() << " signed " << form.getName() << DEFAULT
 				  << std::endl;
