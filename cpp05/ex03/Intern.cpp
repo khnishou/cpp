@@ -27,14 +27,28 @@ std::ostream& operator<<(std::ostream& o, Intern const& obj) {
 
 AForm* Intern::makeForm(const std::string& name, const std::string& target)
 {
-    auto it = formMap.find(name);
-    if (it != formMap.end()) {
-        std::cout << "Intern creates " << name << std::endl;
-        AForm* newForm = new AForm(name);
-        newForm->setTarget(target);
-        return newForm;
-    } else {
-        std::cout << RED <<"Error: Form '" << name << "' does not exist!" << DEFAULT << std::endl;
-        return nullptr;
+    std::string const f_list[3] = {"PresidentialPardonForm", "RobotomyRequestForm", "ShrubberyCreationForm"};
+    int i = 0;
+
+    while (i < 3 && f_list[i] != name)
+        i++;
+    AForm* form;
+    switch (i)
+    {
+        case 0:
+            form = new PresidentialPardonForm(target);
+            break ;
+        case 1:
+            form = new RobotomyRequestForm(target);
+            break ;
+        case 2:
+            form = new ShrubberyCreationForm(target);
+            break ;
+        default:
+            throw Intern::InvalidName();
     }
+    std::cout << GRAY << "Intern created " << name << DEFAULT << std::endl;
+    return (form);
 }
+
+const char* Intern::InvalidName::what() const throw() { return "Invalid name"; }

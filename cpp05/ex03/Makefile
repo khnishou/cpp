@@ -1,9 +1,9 @@
 
-NAME = ex02
+NAME = ex03
 
 FLAGS = -Wall -Werror -Wextra -std=c++98
 
-SRC = Bureaucrat.cpp main.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+SRC = Bureaucrat.cpp main.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
