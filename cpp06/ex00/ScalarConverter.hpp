@@ -9,13 +9,12 @@
 #define GRAY "\033[1;30m"
 #define DEFAULT "\033[1;39m"
 
-class ScalarConverter {
-    private:
-        int atod(std::sring str);
-        int itod(std::sring str);
-        int dtod(std::sring str);
-        int ftod(std::sring str);
+#include <string>
 
-    public:
-        void convert(std::string input);
-}
+class ScalarConverter {
+   private:
+
+   public:
+	int strToD(std::string str, double* out);
+	void convert(std::string input);
+};
