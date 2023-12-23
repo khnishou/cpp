@@ -21,6 +21,7 @@ class ScalarConverter {
       void intPrint(double val);
       void floatPrint(double val);
       void doublePrint(double val);
+      int chtod(std::string str, double* out);
 
    public:
 	   void convert(std::string input);
