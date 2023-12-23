@@ -10,11 +10,18 @@
 #define DEFAULT "\033[1;39m"
 
 #include <string>
+#include <climits>
+#include <cfloat>
 
 class ScalarConverter {
    private:
+	   int strToD(std::string str, double* out);
+      void argsPrint(double val);
+      void charPrint(double val);
+      void intPrint(double val);
+      void floatPrint(double val);
+      void doublePrint(double val);
 
    public:
-	int strToD(std::string str, double* out);
-	void convert(std::string input);
+	   void convert(std::string input);
 };

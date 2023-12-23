@@ -19,7 +19,7 @@ int ScalarConverter::strToD(std::string str, double* out)
 	k += (sign != 0);
     while (str[k + j] && std::isdigit(str[k + j]))
         *out = (*out * 10) + (str[k + j++] - '0');
-    if (str[k] && str[k] == '.')
+    if (str[k + j] && str[k + j] == '.')
         k++;
     while (str[k + j] && std::isdigit(str[k + j]))
     {
@@ -31,10 +31,86 @@ int ScalarConverter::strToD(std::string str, double* out)
         k++;
     while (str[k + j] && std::isspace(str[k + j]))
         k++;
-    if (!j)
+    if (!j && k == str.length())
         return (-1);
     return (k + j);
 }
+
+void ScalarConverter::argsPrint(double val)
+{
+    charPrint(val);
+    intPrint(val);
+    floatPrint(val);
+    doublePrint(val);
+}
+
+void ScalarConverter::charPrint(double val)
+{
+    char c;
+
+    c = (char) val;
+    std::cout << "char : ";
+    if (val >= 0 && val <= 31)
+        std::cout << "not printable" << std::endl;
+    else if (val > 31 && val < 128)
+        std::cout << c << std::endl;
+    else
+        std::cout << "not an ASCII" << std::endl;
+}
+
+void ScalarConverter::intPrint(double val)
+{
+    int c;
+
+    c = (int) val;
+    std::cout << "int  : ";
+    if ((val >= INT_MIN && val <= INT_MAX))
+        std::cout << c << std::endl;
+    else
+        std::cout << "not an int" << std::endl;
+}
+
+void ScalarConverter::floatPrint(double val)
+{
+    unsigned int right;
+    int left;
+    int tmp;
+    float flt;
+
+    flt = (float) val;
+    left = (int) flt;
+    flt -= left;
+    right = 0;
+    while (flt)
+    {
+        flt *= 10;
+        tmp = (int) flt;
+        right = (right * 10) + tmp;
+        std::cout << ORANGE << tmp <<DEFAULT<< std::endl;
+        flt -= tmp;
+    }
+    std::cout << "float : ";
+    std::cout << left << "." << right << "f" << std::endl;
+}
+
+void ScalarConverter::doublePrint(double val)
+{
+    unsigned int right;
+    int left;
+
+    left = (int) val;
+    val -= left;
+    right = 0;
+    while (val)
+    {
+        val *= 10;
+        right = (right * 10) + (int) val;
+        val -= (int) val;
+    }
+    std::cout << "double : ";
+    std::cout << left << "." << right << std::endl;
+}
+
 
 void ScalarConverter::convert(std::string input)
 {
@@ -50,7 +126,7 @@ void ScalarConverter::convert(std::string input)
     {
         len = input.length() - readLen;
         std::cout << RED << "Error: " << DEFAULT << "Wrong input" << std::endl;
-        std::cout << input << std::endl;
+        std::cout << "\t" << input << std::endl << "\t";
         while (readLen--)
             std::cout << " ";
         std::cout << GREEN << "^";
@@ -58,7 +134,7 @@ void ScalarConverter::convert(std::string input)
             std::cout << "~";
         std::cout << DEFAULT << std::endl;
     }else
-        std::cout << data << std::endl;
+        argsPrint(data);
 }
 
 int main() {
@@ -81,20 +157,3 @@ int main() {
 
     return 0;
 }
-
-// int main() {
-//     std::string input;
-//     double output;
-
-//     std::cout << "Enter a number string: ";
-//     std::cin >> input;
-
-//     ScalarConverter converter;
-//     int readLen = converter.strToD(input, &output);
-
-//     std::cout << "String: " << input << std::endl;
-//     std::cout << "Converted to double: " << output << std::endl;
-//     std::cout << "Characters processed: " << readLen << std::endl;
-
-//     return 0;
-// }

@@ -30,7 +30,7 @@ void	RobotomyRequestFormTest() {
 	AForm* form = NULL;
 	try {
 		Intern klawi;
-		form = klawi.makeForm("RobotomyRequestForm", "khnishou");
+		form = klawi.makeForm("RobotomyRvequestForm", "khnishou");
 		Bureaucrat	harvey("Harvey", 1);
 		Bureaucrat	ross("Ross", 140);
 
