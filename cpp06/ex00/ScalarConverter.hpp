@@ -10,6 +10,9 @@
 #define DEFAULT "\033[1;39m"
 
 #include <string>
+#include <iomanip>
+#include <iostream>
+#include <ostream>
 #include <climits>
 #include <cfloat>
 

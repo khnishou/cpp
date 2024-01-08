@@ -1,17 +1,11 @@
 
 #include "ScalarConverter.hpp"
 
-#include <iomanip>
-#include <iostream>
-#include <ostream>
-#include <string>
-
 int ScalarConverter::chtod(std::string str, double* out)
 {
     if (str.length() == 1 && !std::isdigit(str[0]))
     {
         *out = (int) str[0];
-std::cout << "test\n";
         return (0);
     }
     return (1);
@@ -113,25 +107,4 @@ void ScalarConverter::convert(std::string input) {
 		std::cout << DEFAULT << std::endl;
 	} else
 		argsPrint(data);
-}
-
-int main() {
-	ScalarConverter converter;
-
-	std::string input;
-	std::cout << "Enter values to convert (press 'q' to quit):" << std::endl;
-
-	while (true) {
-		std::cout << "Enter a value: ";
-		std::getline(std::cin, input);
-
-		if (input == "q") {
-			std::cout << "Exiting..." << std::endl;
-			break;
-		}
-
-		converter.convert(input);
-	}
-
-	return 0;
 }
