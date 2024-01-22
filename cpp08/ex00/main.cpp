@@ -9,7 +9,7 @@ int main() {
     try {
         std::vector<int>::iterator it = easyfind(numbers, 3);
         std::cout << GREEN << "Found: " << DEFAULT << *it << std::endl;
-    } catch (const std::runtime_error& e) {
+    } catch (const std::exception& e) {
         std::cerr << RED << "Error: " << e.what() << DEFAULT << std::endl;
     }
     return 0;
