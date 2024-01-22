@@ -25,28 +25,71 @@ Span& Span::operator=(const Span& other) {
 /*                                Nested Class                                */
 /******************************************************************************/
 
-const char* Span::TooManyElements::what() const throw() { return "Too many elements"; }
+const char* Span::OutOfElements::what() const throw() { return "Out of elements"; }
 const char* Span::NotEnoughElements::what() const throw() { return "Not enough elements"; }
 
 //****************************************************************************//
 //                              Accessor Methods                              //
 //****************************************************************************//
 
-void Span::addNumber()
+void Span::addNumber(int nbr)
 {
-
+	if (this->size <= vec.size())
+		throw OutOfElements();
+	vec.push_back(nbr);
 }
 
 //****************************************************************************//
 //                               Other Function                               //
 //****************************************************************************//
 
-unsigned int Span::shortestSpan()
+unsigned int Span::shortestSpan() const
 {
+	int minSpan;
+	unsigned int j;
+	unsigned int k;
+	int span;
+
+	if (vec.size() < 2)
+		throw NotEnoughElements();
+	minSpan = std::abs(vec[0] - vec[1]);
+	j = 0;
+	while (j < vec.size())
+	{
+		k = j;
+		while (++k < vec.size())
+		{
+			span = std::abs(vec[j] - vec[k]);
+			if (span < minSpan)
+				minSpan = span;
+		}
+		j++;
+	}
+	return (minSpan);
 
 }
 
-unsigned int Span::longestSpan()
+unsigned int Span::longestSpan() const
 {
-	
+	int maxSpan;
+	unsigned int j;
+	unsigned int k;
+	int span;
+
+	if (vec.size() < 2)
+		throw NotEnoughElements();
+	maxSpan = std::abs(vec[0] - vec[1]);
+	j = 0;
+	while (j < vec.size())
+	{
+		k = j;
+		while (++k < vec.size())
+		{
+			span = std::abs(vec[j] - vec[k]);
+			if (span > maxSpan)
+				maxSpan = span;
+		}
+		j++;
+	}
+	return (maxSpan);
 }

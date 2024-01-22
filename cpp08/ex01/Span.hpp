@@ -22,7 +22,7 @@ class Span {
 
 	Span& operator=(const Span& other);
 
-	class TooManyElements : public std::exception {
+	class OutOfElements : public std::exception {
 	   public:
 		const char* what() const throw();
 	};
@@ -31,7 +31,7 @@ class Span {
 		const char* what() const throw();
 	};
 
-	void addNumber();
-	unsigned int shortestSpan();
-	unsigned int longestSpan();
+	void addNumber(int nbr);
+	unsigned int shortestSpan() const;
+	unsigned int longestSpan() const;
 };
