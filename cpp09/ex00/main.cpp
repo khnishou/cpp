@@ -1,4 +1,3 @@
-#include <iostream>
 #include "BitcoinExchange.hpp"
 
 #define RED "\033[1;31m"
@@ -25,6 +24,6 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
-		std::cout << RED << "Error: " << DEFAULT << "invalid arg" << std::endl;
+		std::cerr << RED << "Error: " << DEFAULT << "could not open file." << std::endl;
 	}
 }
