@@ -1,6 +1,8 @@
 
 #include "RPN.hpp"
+#include <iomanip>
 #include <iostream>
+#include <ostream>
 
 /******************************************************************************/
 /*                          Constructor & Destructor                          */
@@ -36,6 +38,7 @@ RPN & RPN::operator=(const RPN &other)
 
 const char* RPN::syntaxError::what() const throw() { return "syntax error."; }
 
+const char* RPN::mathError::what() const throw() { return "math error."; }
 
 
 
@@ -65,6 +68,7 @@ void RPN::calculus(std::string arg)
 	}
 	if (operand.size() != 1)
 		throw syntaxError();
+
 	std::cout << GREEN << "result: " << DEFAULT << operand[0] << std::endl;
 }
 
@@ -122,6 +126,8 @@ void RPN::arithDiv(void)
 	if (size < 2)
         throw syntaxError();
     double result;
+	if (operand[size - 1] == 0)
+		throw mathError();
 	result = operand[size - 2] / operand[size - 1];
     operand.pop_back();
     operand.pop_back();

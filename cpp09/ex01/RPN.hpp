@@ -35,4 +35,8 @@ class RPN {
 	class syntaxError : public std::exception {
 		virtual const char* what() const throw();
 	};
+
+	class mathError : public std::exception {
+		virtual const char* what() const throw();
+	};
 };
