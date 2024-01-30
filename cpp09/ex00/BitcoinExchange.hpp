@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include <map>
 #include <sstream>
 #include <stdexcept>
 
@@ -15,20 +15,20 @@ struct data
 	unsigned int day;
 	unsigned int month;
 	unsigned int year;
-	double value;
+	// double value;
 };
 
 class BitcoinExchange {
    private:
-	std::vector<data> fileContainer;
+	std::map<data, float> fileContainer;
    public:
-	BitcoinExchange(std::string file);
+	BitcoinExchange(void);
 	BitcoinExchange(const BitcoinExchange &other);
-	~BitcoinExchange();
+	~BitcoinExchange(void);
 	BitcoinExchange & operator=(const BitcoinExchange &other);
 
-	int setFileData(std::string str, data* fileData);
-	int setDataBase(std::string str, data* fileData);
+	float setFileData(std::string str, data* fileData);
+	float setDataBase(std::string str, data* fileData);
 	
 	void btc(std::string arg);
 	int getDaysDifference(int i, const data &dbLine);
