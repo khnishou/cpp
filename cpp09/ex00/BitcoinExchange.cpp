@@ -37,7 +37,9 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) : fileContainer(o
 /*                               OPERATOR OVERLOAD                            */
 /******************************************************************************/
 
-BitcoinExchange & BitcoinExchange::operator=(const BitcoinExchange &other) { this->fileContainer = other.fileContainer; }
+BitcoinExchange & BitcoinExchange::operator=(const BitcoinExchange &other) { this->fileContainer = other.fileContainer; 
+return *this;
+}
 
 /******************************************************************************/
 /*                                Nested Class                                */
@@ -141,10 +143,19 @@ void BitcoinExchange::btc(std::string arg)
                 throw syntaxError();
             std::map<data,float>::iterator iter = this->fileContainer.lower_bound(dataBase);
             float multi = iter->second;
-            std::cout << dataBase.year << "-" << dataBase.month << "-" << dataBase.day << " => " << val << " = " << (multi * val);
+            std::cout << dataBase.year << "-" << dataBase.month << "-" << dataBase.day << " => " << val << " = " << (multi * val) << std::endl;
         }
         fd.close();
     }
     else
         throw fileError();
+}
+
+bool data::operator<(const data& other) const
+{
+	if (year != other.year)
+		return year < other.year;
+	if (month != other.month)
+		return month < other.month;
+	 return day < other.day;
 }

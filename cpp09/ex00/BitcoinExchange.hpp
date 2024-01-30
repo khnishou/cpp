@@ -16,6 +16,8 @@ struct data
 	unsigned int month;
 	unsigned int year;
 	// double value;
+		bool	operator<(const data&other) const;
+
 };
 
 class BitcoinExchange {
