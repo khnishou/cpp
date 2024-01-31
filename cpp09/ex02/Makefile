@@ -3,7 +3,7 @@ NAME = PmergeMe
 
 FLAGS = -Wall -Werror -Wextra -std=c++98
 
-SRC = main.cpp BitcoinExchange.cpp
+SRC = main.cpp PmergeMe.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
